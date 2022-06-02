@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
-import { selectAllCountries, selectCountriesInfo } from '../store/countries/countries-selectors';
+import { selectCountriesInfo, selectVisibleCountries } from '../store/countries/countries-selectors';
 import { loadCountries } from '../store/countries/countries-action';
+import { selectSearch } from '../store/controls/controls-slectors';
 
 export const HomePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const allCountries = useSelector(selectAllCountries);
+    const search = useSelector(selectSearch);
+    const countries = useSelector((state) => selectVisibleCountries(state, { search }));
     const { status, error, countriesQuantity } = useSelector(selectCountriesInfo);
 
     useEffect(() => {
@@ -27,7 +29,7 @@ export const HomePage = () => {
 
             {status === 'received' && (
                 <List>
-                    {allCountries.map((c) => {
+                    {countries.map((c) => {
                         const countryInfo = {
                             img: c.flags.png,
                             name: c.name,
