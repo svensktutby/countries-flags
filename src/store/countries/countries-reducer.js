@@ -1,4 +1,4 @@
-import { SET_COUNTRIES, SET_ERROR, SET_LOADING } from './countries-action';
+import { SET_COUNTRIES, SET_ERROR, SET_LOADING } from './countries-actions';
 
 const initialState = {
     status: 'idle', // loading | received | rejected

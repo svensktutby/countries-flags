@@ -6,7 +6,7 @@ import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
 import { selectCountriesInfo, selectVisibleCountries } from '../store/countries/countries-selectors';
-import { loadCountries } from '../store/countries/countries-action';
+import { loadCountries } from '../store/countries/countries-actions';
 import { selectControls } from '../store/controls/controls-slectors';
 
 export const HomePage = () => {
