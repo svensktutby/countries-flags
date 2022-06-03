@@ -7,5 +7,7 @@ export const selectCountriesInfo = (state) => ({
 export const selectAllCountries = (state) => state.countries.list;
 export const selectVisibleCountries = (state, { search = '', region = '' }) =>
     state.countries.list.filter(
-        (c) => c.name.toLowerCase().includes(search.toLowerCase()) && c.region.toLowerCase() === region.toLowerCase(),
+        (c) =>
+            c.name.toLowerCase().includes(search.toLowerCase()) &&
+            c.region.toLowerCase().includes(region.toLowerCase()),
     );

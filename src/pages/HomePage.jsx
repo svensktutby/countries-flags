@@ -17,7 +17,7 @@ export const HomePage = () => {
     const { status, error, countriesQuantity } = useSelector(selectCountriesInfo);
 
     useEffect(() => {
-        !countriesQuantity && dispatch(loadCountries());
+        if (!countriesQuantity) dispatch(loadCountries());
     }, [countriesQuantity, dispatch]);
 
     return (
