@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { IoSearch } from 'react-icons/io5';
+import throttle from 'lodash.throttle';
 
 import { selectSearch } from '../store/controls/controls-slectors';
 import { setSearch } from '../store/controls/controls-actions';
@@ -37,9 +38,9 @@ export const Search = () => {
     const dispatch = useDispatch();
     const search = useSelector(selectSearch);
 
-    const handleSearch = (e) => {
+    const handleSearch = throttle((e) => {
         dispatch(setSearch(e.target.value));
-    };
+    }, 1000);
 
     return (
         <InputContainer>
