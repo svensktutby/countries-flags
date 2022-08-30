@@ -1,10 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Search } from './Search';
 import { CustomSelect } from './CustomSelect';
-import { setRegion } from '../store/controls/controls-actions';
-import { selectRegion } from '../store/controls/controls-slectors';
+import { useRegion } from './use-region';
 
 const optionsMap = {
     Africa: { value: 'Africa', label: 'Africa' },
@@ -28,12 +26,7 @@ const Wrapper = styled.div`
 `;
 
 export const Controls = () => {
-    const dispatch = useDispatch();
-    const region = useSelector(selectRegion);
-
-    const handleSelect = (option) => {
-        dispatch(setRegion(option?.value || ''));
-    };
+    const { region, handleSelect } = useRegion();
 
     return (
         <Wrapper>

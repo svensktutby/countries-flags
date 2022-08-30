@@ -1,47 +1,42 @@
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import { clearControls } from "../store/controls/controls-actions";
-import { Container } from "./Container";
-import { ThemeSwitcher } from "../features/theme/ThemeSwitcher";
+import { ThemeSwitcher } from '../features/theme/ThemeSwitcher';
+import { useCleanup } from '../features/controls/use-cleanup';
+import { Container } from './Container';
 
 const HeaderEl = styled.header`
-  box-shadow: var(--shadow);
-  background-color: var(--colors-ui-base);
+    box-shadow: var(--shadow);
+    background-color: var(--colors-ui-base);
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
 `;
 
 const Title = styled(Link).attrs({
-  to: "/",
+    to: '/',
 })`
-  color: var(--colors-text);
-  font-size: var(--fs-sm);
-  text-decoration: none;
-  font-weight: var(--fw-bold);
+    color: var(--colors-text);
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    font-weight: var(--fw-bold);
 `;
 
 export const Header = () => {
-  const dispatch = useDispatch();
+    const cleanUp = useCleanup();
 
-  const cleanUp = () => {
-    dispatch(clearControls());
-  };
-
-  return (
-    <HeaderEl>
-      <Container>
-        <Wrapper>
-          <Title onClick={cleanUp}>Where is the world?</Title>
-          <ThemeSwitcher />
-        </Wrapper>
-      </Container>
-    </HeaderEl>
-  );
+    return (
+        <HeaderEl>
+            <Container>
+                <Wrapper>
+                    <Title onClick={cleanUp}>Where is the world?</Title>
+                    <ThemeSwitcher />
+                </Wrapper>
+            </Container>
+        </HeaderEl>
+    );
 };
