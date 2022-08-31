@@ -34,6 +34,18 @@ const detailsSlice = createSlice({
             .addCase(loadCountry.fulfilled, (state, action) => {
                 state.status = 'received';
                 state.currentCountry = action.payload.data[0];
+            })
+            .addCase(loadNeighbors.pending, (state) => {
+                state.status = 'loading';
+                state.error = null;
+            })
+            .addCase(loadNeighbors.rejected, (state, action) => {
+                state.status = 'rejected';
+                state.error = action.payload || action.meta.error;
+            })
+            .addCase(loadNeighbors.fulfilled, (state, action) => {
+                state.status = 'received';
+                state.neighbors = action.payload.data;
             });
     },
 });
